@@ -6,5 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'fromZeroToHero';
+  title = 'fromZeroToHeroByAndressa';
+
+  public sideBarVisibility: boolean = false;
+
+  public toggleSideBar(visibility: boolean): void {
+    this.sideBarVisibility = visibility;
+  }
+
 }
