@@ -1,30 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {HeroesService} from "../../services/heroes.service";
 import {TableService} from "../../services/table.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
   public dataSource: any;
   public dataCount: any;
-  displayedColumns: string[] = ['id', 'name'];
+  public displayedColumns: string[] = ['id', 'name'];
+  private openSubscriptions: Subscription[] = [];
 
-  constructor(private _heroesService : HeroesService, private _tableService : TableService) {
+  constructor(private _heroesService: HeroesService, private _tableService: TableService) {
   }
 
   ngOnInit(): void {
-    this._heroesService.getCharacters().subscribe((res)=> {
-      this.dataSource = res.data.results
-      this.dataCount = res.data.total
-      console.log('datacount - ', this.dataCount)
-    });
-
-    this._tableService.changes.subscribe((options) => {
-      console.log('options', options)
-      this._heroesService.getCharacters(options).subscribe((res)=> this.dataSource = res.data.results);
+    const characSub = this._tableService.changes.subscribe((options) => {
+      this._heroesService.getCharacters(options).subscribe((res) => {
+        this.dataSource = res.data.results
+        this.dataCount = res.data.total
+      })
     })
+    this.openSubscriptions.push(characSub);
+  }
+
+  ngOnDestroy(): void {
+    this.openSubscriptions.forEach(sub => sub.unsubscribe());
   }
 }

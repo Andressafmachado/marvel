@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {Router} from "@angular/router";
 
 @Component({
@@ -6,16 +6,13 @@ import {Router} from "@angular/router";
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
 
   @Output()
   public sideBarButtonClick: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   public shouldOpen = false;
   constructor(private _router: Router) { }
-
-  ngOnInit(): void {
-  }
 
   public openSideBar():void {
       this.shouldOpen = !this.shouldOpen;

@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Subject} from "rxjs";
+import {BehaviorSubject} from "rxjs";
 import {Sort} from "@angular/material/sort/sort";
 
 export interface ITableOptions {
@@ -15,8 +15,9 @@ export interface ITableOptions {
 export class TableService {
 
 
-  public changes: Subject<ITableOptions> = new Subject<ITableOptions>();
-
-  constructor() {
-  }
+  public changes: BehaviorSubject<any> = new BehaviorSubject({
+    sort: {active: '', direction: ''},
+    pageIndex: 0,
+    pageSize: 20
+  });
 }

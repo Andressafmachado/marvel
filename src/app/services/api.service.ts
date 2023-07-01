@@ -9,23 +9,9 @@ import * as CryptoJS from 'crypto-js';
 export class ApiService {
     constructor(private http: HttpClient) {}
 
-  // var pubkey = "2d8a67c2de6703b3744ee8a0099ae23f";
-  // var pvtkey = "a3c85a363839f991736225098624f66cae1c2229";
-  //
-  // var ts = new Date().getTime();
-  //
-  // var message = ts+pvtkey+pubkey;
-  // var a = CryptoJS.MD5(message);
-  //
-  // pm.environment.set("ts", ts)
-  // pm.environment.set("apikey", pubkey)
-  // pm.environment.set("hash", a.toString())
-
   private baseUrl = 'https://gateway.marvel.com/v1/public';
   private publicKey = '2d8a67c2de6703b3744ee8a0099ae23f';
   private privateKey = 'a3c85a363839f991736225098624f66cae1c2229';
-  private ts = new Date().getTime();
-
   private getStamp(): number {
     return new Date().getTime()
   }
@@ -42,11 +28,6 @@ export class ApiService {
     return `apikey=${this.publicKey}&hash=${this.encripted().toString()}&ts=${this.getStamp()}`
   }
 
-  // pm.environment.set("ts", ts)
-  // pm.environment.set("apikey", pubkey)
-  // pm.environment.set("hash", a.toString())
-
-
   public post(endpoint: string, payload: any, options?: any): Observable<any> {
         return this.http.post(
             `${endpoint}`,
@@ -57,7 +38,7 @@ export class ApiService {
 
     public get(endpoint: string, param = '?', headers?: any): Observable<any> {
         return this.http.get(
-            `${this.baseUrl}/${endpoint}${param}${this.credentials()}`
+          `${this.baseUrl}/${endpoint}${param}${this.credentials()}`
         );
     }
 

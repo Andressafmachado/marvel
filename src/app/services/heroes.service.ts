@@ -16,13 +16,13 @@ export class HeroesService {
     let endpoint = '';
     let param = '?';
 
-    if(options){
+    // if(options){
        endpoint = this.endpointBuilder('characters', options);
        param = '&'
-    } else {
-       endpoint = 'characters'
-      param = '?'
-    }
+    // } else {
+    //    endpoint = 'characters'
+    //   param = '?'
+    // }
 
     return new Observable((observer) => {
       this._apiService.get(endpoint, param).subscribe((res) => {
@@ -95,8 +95,6 @@ export class HeroesService {
 
 
   private endpointBuilder(endpoint: string, tableOptions: ITableOptions): string {
-    console.log('table options',tableOptions)
-    return `${endpoint}?orderBy=${tableOptions.sort.active}&limit=${tableOptions.pageSize}&offset=${tableOptions.pageIndex * tableOptions.pageSize}`;
-    // return `${endpoint}?orderBy=name&limit=0&offset=${tableOptions.pageIndex * tableOptions.pageSize}`;
+    return `${endpoint}?orderBy=${tableOptions.sort.active}&limit=${tableOptions.pageSize}&offset=${tableOptions.pageIndex * tableOptions.pageSize}&`;
   }
 }
