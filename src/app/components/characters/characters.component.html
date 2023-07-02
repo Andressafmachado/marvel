@@ -1,8 +1,8 @@
 <div *ngIf="character">
   <p>name: {{character?.name}}</p>
   <p>description: {{character?.description}}</p>
-  <button mat-button color="primary" [routerLink]="['/characters/' + character.id + '/series']">Series</button>
-  <button mat-button color="primary" [routerLink]="['/characters/' + character.id + '/comics']">Comics</button>
-  <button mat-button color="primary" [routerLink]="['/characters/' + character.id + '/events']">Events</button>
-  <button mat-button color="primary" [routerLink]="['/characters/' + character.id + '/stories']">Stories</button>
+  <button mat-button color="primary"><a [routerLink]="['/characters/' + character.id + '/series']">Series</a></button>
+  <button mat-button color="primary"><a [routerLink]="['/characters/' + character.id + '/comics']">Comics</a></button>
+  <button mat-button color="primary"><a [routerLink]="['/characters/' + character.id + '/events']">Events</a></button>
+  <button mat-button color="primary"><a [routerLink]="['/characters/' + character.id + '/stories']">Stories</a></button>
 </div>
