@@ -19,9 +19,14 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     const characSub = this._tableService.changes.subscribe((options) => {
-      this._heroesService.getCharacters(options).subscribe((res) => {
-        this.dataSource = res.data.results
-        this.dataCount = res.data.total
+      this._heroesService.getCharacters(options).subscribe({
+        next: (res) => {
+          this.dataSource = res.data.results
+          this.dataCount = res.data.total
+        },
+        error: (err) => {
+          console.log('sorry, you were to fast', err)
+        }
       })
     })
     this.openSubscriptions.push(characSub);

@@ -25,10 +25,16 @@ export class HeroesService {
     // }
 
     return new Observable((observer) => {
-      this._apiService.get(endpoint, param).subscribe((res) => {
-        console.log(res)
-        observer.next(res);
-        observer.complete();
+      this._apiService.get(endpoint, param).subscribe({
+        next: (res) => {
+          observer.next(res);
+          observer.complete();
+        },
+        error: (err) => {
+          observer.error(err);
+          observer.complete();
+        }
+
       });
     });
   }
