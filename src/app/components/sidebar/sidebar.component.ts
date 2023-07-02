@@ -6,17 +6,8 @@ import {MatDrawer} from "@angular/material/sidenav";
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss']
 })
-export class SidebarComponent implements OnChanges {
+export class SidebarComponent {
   @Input()
-  public shouldOpenSidebar: boolean = false;
-
-  @ViewChild('drawer') public drawer: MatDrawer
-
-  public tabs = ['Home', 'Characters', 'Comics', 'Events'];
-  constructor() { }
-
-  ngOnChanges(changes:SimpleChanges){
-    this.shouldOpenSidebar = changes["shouldOpenSidebar"].currentValue;
-    this.drawer.toggle();
-  }
+  public buttonName: string;
+  showFiller = false;
 }
