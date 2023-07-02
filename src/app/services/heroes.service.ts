@@ -13,22 +13,18 @@ export class HeroesService {
 
 
   public getCharacters(options?: any): Observable<any> {
-    let endpoint = '';
-    let param = '?';
-
-    // if(options){
-       endpoint = this.endpointBuilder('characters', options);
-       param = '&'
-    // } else {
-    //    endpoint = 'characters'
-    //   param = '?'
-    // }
+    let endpoint = this.endpointBuilder('characters', options);
+    let param = '&';
 
     return new Observable((observer) => {
-      this._apiService.get(endpoint, param).subscribe((res) => {
-        console.log(res)
-        observer.next(res);
-        observer.complete();
+      this._apiService.get(endpoint, param).subscribe({
+        next: (res) => {
+          observer.next(res);
+          observer.complete();
+        },
+        error: (err) => {
+          observer.error(err);
+        }
       });
     });
   }

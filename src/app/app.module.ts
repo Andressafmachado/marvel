@@ -23,6 +23,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { SeriesComponent } from './components/series/series.component';
 import { StoriesComponent } from './components/stories/stories.component'
 import {MatMenuModule} from "@angular/material/menu";
+import {MatCardModule} from "@angular/material/card";
 
 
 @NgModule({
@@ -39,22 +40,23 @@ import {MatMenuModule} from "@angular/material/menu";
     SeriesComponent,
     StoriesComponent,
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        MatToolbarModule,
-        MatIconModule,
-        MatButtonModule,
-        HttpClientModule,
-        MatSidenavModule,
-        MatProgressSpinnerModule,
-        MatPaginatorModule,
-        MatTableModule,
-        MatSortModule,
-        MatMenuModule
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
+    HttpClientModule,
+    MatSidenavModule,
+    MatProgressSpinnerModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatSortModule,
+    MatMenuModule,
+    MatCardModule
 
-    ],
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

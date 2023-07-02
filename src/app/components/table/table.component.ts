@@ -32,9 +32,9 @@ export class TableComponent implements AfterViewInit, OnDestroy {
   ngAfterViewInit() {
     // If the user changes the sort order, reset back to the first page.
     const sortSub = this.sort.sortChange.subscribe((res) => {
-      (this.paginator.pageIndex = 0)
-      console.log('sort', res)
-
+      this.paginator.pageIndex = 0;
+      this.dataSource.sort.direction = res.direction;
+      this.dataSource.sort.active = res.active;
     })
 
     const changesSub = merge(this.sort?.sortChange, this.paginator.page)
